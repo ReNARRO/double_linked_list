@@ -79,6 +79,42 @@ namespace double_linked_list
             current.prev = newNode;
             previous.next = newNode;
         }
+        //Checks wheteher the specified node is present
+        public bool Search(int rollNo, ref Node previous, ref Node current)
+        {
+            for (previous = current = START; current != null && rollNo != current.rollNumber; previous = current, current = current.next) 
+            { }
+            //The above for loop tranverse the list. If the specified node
+            //is found then the function returns true, otherwise false.
+            return (current != null);
+        }
+        //Deletes the specified node
+        public bool delNode(int rollNo)
+        {
+            Node previous, current;
+            previous = current = null;
+            if (Search(rollNo, ref previous, ref current) == false)
+                return false;
+            //If the first node is to be deleted
+            if (current == START)
+            {
+                START = START.next;
+                if (START != null)
+                    START.prev = null;
+                return true;
+            }
+            //If the last node is to be deleted
+            if (current.next == null)
+            {
+                previous.next = null;
+                return true;
+            }
+            //If the node to be deleted is in between the list then the
+            //following lines of code is executed.           
+            previous.next = current.next;
+            current.next.prev = previous;
+            return true;
+        }
     }
 
     class Program

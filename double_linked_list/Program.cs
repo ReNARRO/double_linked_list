@@ -19,6 +19,14 @@ namespace double_linked_list
         //point to the precceding node
         public Node prev;
     }
+    class DoubleLinkedList
+    {
+        Node START;
+        public DoubleLinkedList()
+        {
+            START = null;
+        }
+    }
 
     class Program
     {

@@ -26,6 +26,34 @@ namespace double_linked_list
         {
             START = null;
         }
+        public void addNode() //Adds a new node
+        {
+            int rollNo;
+            string nm;
+            Console.WriteLine("\nEnter the roll number of the student: ");
+            rollNo = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\nEnter the name of the student: ");
+            nm = Console.ReadLine();
+            Node newNode = new Node();
+            newNode.rollNumber = rollNo;
+            newNode.name = nm;
+
+            //Check if the list empty
+            if (START == null || rollNo <= START.rollNumber)
+            {
+                if ((START != null) && (rollNo == START.rollNumber))
+                {
+                    Console.WriteLine("\nDulpicate number not allowed");
+                    return;
+                }
+                newNode.next = START;
+                if (START != null)
+                    START.prev = newNode;
+                newNode.prev = null;
+                START = newNode;
+                return;
+            }
+        }
     }
 
     class Program
